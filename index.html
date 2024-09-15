@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oxford Game</title>
+    <link rel="stylesheet" href="home.css">
+    <script src="auth.js"></script>
+</head>
+<body>
+    <header>
+        <div class="logo">Oxford Game</div>
+        <a href="index.html">
+            <h1>Oxford</h1>
+        </a>
+
+        <div class="dropdown">
+            <button class="login" onclick="toggleDropdown()">Guest</button>
+            <div class="dropdown-content" id="dropdown-content">
+                <a href="login.html" class="login-link">Login</a>
+                <a href="#" onclick="logout()" class="logout-link" style="display: none;">Logout</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <h2>Select Your Mode</h2>
+        <div class="button-group">
+            <a href="home3000.html">
+                <div>EASY</div>
+            </a>
+            <a href="home5000.html">
+                <div>HARD</div>
+            </a>
+            <a href="CUSTOM.html">
+                <div>ALL</div>
+            </a>
+        </div>
+    </main>
+
+    <script>
+        function toggleDropdown() {
+            const dropdownContent = document.getElementById('dropdown-content');
+            dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function logout() {
+            sessionStorage.removeItem('isLoggedIn');
+            sessionStorage.removeItem('username');
+            window.location.href = 'login.html';
+        }
+
+        function checkLoginStatus() {
+            const isLoggedIn = sessionStorage.getItem('isLoggedIn');
+            const username = sessionStorage.getItem('username');
+            const loginElement = document.querySelector('.login');
+            const dropdownContent = document.querySelector('.dropdown-content');
+            const loginLink = document.querySelector('.login-link');
+            const logoutLink = document.querySelector('.logout-link');
+
+            if (isLoggedIn && username) {
+                loginElement.textContent = username;
+                dropdownContent.style.display = 'none';
+                loginLink.style.display = 'none';
+                logoutLink.style.display = 'block';
+            } else {
+                loginElement.textContent = 'Guest';
+                dropdownContent.style.display = 'none';
+                loginLink.style.display = 'block';
+                logoutLink.style.display = 'none';
+            }
+        }
+
+        window.onload = checkLoginStatus;
+    </script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+body {
+    font-family: 'Kanit', sans-serif; /* เปลี่ยนฟอนต์ให้ตรงกัน */
+    background: linear-gradient(to right, #03346E, #6EACDA, #bde2ff); /* ใช้พื้นหลังแบบเดียวกัน */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+main {
+    background-color: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px #00000033;
+    text-align: center;
+    width: 400px; /* ปรับขนาดให้ใหญ่ขึ้นเล็กน้อย */
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: #03346E; /* ใช้สีเดียวกับธีม */
+    font-size: 32px; /* ขนาดตัวอักษรใหญ่ขึ้นให้เข้ากับธีม */
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    text-align: left;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+input {
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+button {
+    padding: 12px;
+    background-color: #03346E; /* สีปุ่มเหมือนกัน */
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #1a5276;
+}
+
+p {
+    margin-top: 15px;
+    color: #333;
+}
+
+a {
+    color: #2980b9;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+#error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+    display: none;
+}

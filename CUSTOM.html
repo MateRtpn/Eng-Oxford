@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oxford Game</title>
+    <link rel="stylesheet" href="home.css">
+    <script src="auth.js"></script>
+</head>
+<body>
+    <header>
+        <div class="logo">Oxford Game</div>
+        <a href="index.html">
+            <h1>All</h1> <!-- ลิงก์ไปยังหน้า home.html -->
+        </a>
+
+        <div class="dropdown">
+            <button class="login" onclick="toggleDropdown()">Guest</button>
+            <div class="dropdown-content" id="dropdown-content">
+                <a href="login.html" class="login-link">Login</a>
+                <a href="#" onclick="logout()" class="logout-link" style="display: none;">Logout</a>
+            </div>
+        </div>
+    </header>
+    </div>
+
+    <script>
+        function toggleDropdown() {
+            const dropdownContent = document.getElementById('dropdown-content');
+            dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function logout() {
+            sessionStorage.removeItem('isLoggedIn');
+            sessionStorage.removeItem('username');
+            window.location.href = 'login.html';
+        }
+
+        function checkLoginStatus() {
+            const isLoggedIn = sessionStorage.getItem('isLoggedIn');
+            const username = sessionStorage.getItem('username');
+            const loginElement = document.querySelector('.login');
+            const dropdownContent = document.querySelector('.dropdown-content');
+            const loginLink = document.querySelector('.login-link');
+            const logoutLink = document.querySelector('.logout-link');
+
+            if (isLoggedIn && username) {
+                loginElement.textContent = username;
+                dropdownContent.style.display = 'none';
+                loginLink.style.display = 'none';
+                logoutLink.style.display = 'block';
+            } else {
+                loginElement.textContent = 'Guest';
+                dropdownContent.style.display = 'none';
+                loginLink.style.display = 'block';
+                logoutLink.style.display = 'none';
+            }
+        }
+
+        window.onload = checkLoginStatus;
+    </script>
+</body>
+
+<body>
+    <link rel="stylesheet" href="game3,5,C.css">
+
+    <div class="container">
+        <div class="question-container">
+            <p id="question"></p>
+            <div id="choices"></div>
+        </div>
+        <p id="feedback"></p>
+        <button id="nextButton" onclick="nextQuestion()">ถัดไป</button>
+        <div class="result">
+            <p id="score"></p>
+        </div>
+    </div>
+
+<script>
+
+        // รับจำนวนคำถามจาก LocalStorage
+        const numQuestions = parseInt(localStorage.getItem('numQuestions')) || 5;
+</script>
+
+    <script>
+        const config = {
+            numberOfQuestions: 20
+        };
+
+        const questions = [
+        { word: 'Advocate', correct: 'ผู้สนับสนุน' },
+            { word: 'Astonishing', correct: 'น่าประหลาดใจ' },
+            { word: 'Controversy', correct: 'ข้อโต้แย้ง' },
+            { word: 'Constitute', correct: 'ก่อตั้ง' },
+            { word: 'Consecutive', correct: 'ต่อเนื่องกัน' },
+            { word: 'Deteriorate', correct: 'เสื่อมลง' },
+            { word: 'Discrepancy', correct: 'ขัดแย้ง' },
+            { word: 'Elaborate', correct: 'ละเอียดถี่ถ้วน' },
+            { word: 'Facilitate', correct: 'ทำให้ง่ายขึ้น' },
+            { word: 'Imminent', correct: 'ใกล้จะเกิดขึ้น' },
+            { word: 'Indispensable', correct: 'ขาดไม่ได้' },
+            { word: 'Meticulous', correct: 'พิถีพิถัน' },
+            { word: 'Notorious', correct: 'ชื่อเสียงในทางลบ' },
+            { word: 'Obsolete', correct: 'ล้าสมัย' },
+            { word: 'Perceive', correct: 'รับรู้' },
+            { word: 'Perplexing', correct: 'น่างุนงง' },
+            { word: 'Predominant', correct: 'เป็นหลัก/โดดเด่น' },
+            { word: 'Reluctant', correct: 'ไม่เต็มใจ' },
+            { word: 'Resilience', correct:'ความสามารถในการฟื้นตัว' },
+            { word: 'Scrutinize', correct: 'ตรวจสอบอย่างละเอียด' },
+            { word: 'Simultaneous', correct: 'เกิดขึ้นพร้อมกัน' },
+            { word: 'Subsequent', correct: 'ที่ตามมา' },
+            { word: 'Sustain', correct: 'ค้ำจุน/รักษาไว้' },
+            { word: 'Tangible', correct: 'จับต้องได้' },
+            { word: 'Tentative', correct: 'ไม่แน่นอน' },
+            { word: 'Unprecedented',correct:'ไม่เคยเกิดขึ้นมาก่อน' },
+            { word: 'Viable', correct: 'เป็นไปได้' },
+            { word: 'Vulnerable', correct: 'อ่อนแอ' },
+            { word: 'Widespread', correct: 'แพร่หลาย' },
+            { word: 'Arbitrary', correct: 'ตามอำเภอใจ' },
+            { word: 'Compliance', correct: 'การปฏิบัติตาม' },
+            { word: 'Consolidate', correct: 'รวมเป็นหนึ่ง' },
+            { word: 'Deprive', correct: 'พรากเอาไป' },
+            { word: 'Disseminate', correct: 'เผยแพร่' },
+            { word: 'Exemplify', correct: 'ยกตัวอย่าง' },
+            { word: 'Exorbitant', correct: 'แพงเกินไป' },
+            { word: 'Fluctuate', correct: 'ผันผวน' },
+            { word: 'Impartial', correct: 'ไม่ลำเอียง' },
+            { word: 'Inhibit', correct: 'ยับยั้ง' },
+            { word: 'Integral', correct: 'จำเป็น/เป็นส่วนสำคัญ' },
+            { word: 'Lucrative', correct: 'มีกำไรมาก' },
+            { word: 'Prohibit', correct: 'ห้าม' },
+            { word: 'Revitalize', correct: 'ทำให้มีชีวิตชีวาขึ้น' },
+            { word: 'Subordinate', correct: 'ผู้ใต้บังคับบัญชา' },
+            { word: 'Ubiquitous', correct: 'มีอยู่ทั่วไป' },
+            { word: 'Advice', correct: 'คำแนะนำ' },
+            { word: 'Ancient', correct: 'โบราณ' },
+            { word: 'Available', correct: 'ที่มีอยู่' },
+            { word: 'Benefit', correct: 'ประโยชน์' },
+            { word: 'Challenge', correct: 'ความท้าทาย' },
+            { word: 'Comfortable', correct: 'สบาย' },
+            { word: 'Compete', correct: 'แข่งขัน' },
+            { word: 'Consequence', correct: 'ผลลัพธ์' },
+            { word: 'Consider', correct: 'พิจารณา' },
+            { word: 'Convenient', correct: 'สะดวกสบาย' },
+            { word: 'Culture', correct: 'วัฒนธรรม' },
+            { word: 'Curious', correct: 'อยากรู้อยากเห็น' },
+            { word: 'Decision', correct: 'การตัดสินใจ' },
+            { word: 'Delicious', correct: 'อร่อย' },
+            { word: 'Development', correct: 'การพัฒนา' },
+            { word: 'Disappoint', correct: 'ทำให้ผิดหวัง' },
+            { word: 'Economy', correct: 'เศรษฐกิจ' },
+            { word: 'Education', correct: 'การศึกษา' },
+            { word: 'Effort', correct: 'ความพยายาม' },
+            { word: 'Environment', correct: 'สิ่งแวดล้อม' },
+            { word: 'Essential', correct: 'จำเป็น' },
+            { word: 'Experience', correct: 'ประสบการณ์' },
+            { word: 'Familiar', correct: 'คุ้นเคย' },
+            { word: 'Flexible', correct: 'ยืดหยุ่น' },
+            { word: 'Foreign', correct: 'ต่างประเทศ' },
+            { word: 'Government', correct: 'รัฐบาล' },
+            { word: 'Healthy', correct: 'สุขภาพดี' },
+            { word: 'Important', correct: 'สำคัญ' },
+            { word: 'Include', correct: 'รวมถึง' },
+            { word: 'Individual', correct: 'บุคคล' },
+            { word: 'Influence', correct: 'อิทธิพล' },
+            { word: 'Intelligent', correct: 'ฉลาด' },
+            { word: 'Journey', correct: 'การเดินทาง' },
+            { word: 'Knowledge', correct: 'ความรู้' },
+            { word: 'Language', correct: 'ภาษา' },
+            { word: 'Lifestyle', correct: 'วิถีชีวิต' },
+            { word: 'Opportunity', correct: 'โอกาส' },
+            { word: 'Opinion', correct: 'ความคิดเห็น' },
+            { word: 'Population', correct: 'ประชากร' },
+            { word: 'Popular', correct: 'เป็นที่นิยม' },
+            { word: 'Possibility', correct: 'ความเป็นไปได้' },
+            { word: 'Previous', correct: 'ก่อนหน้า' },
+            { word: 'Protect', correct: 'ปกป้อง' },
+            { word: 'Receive', correct: 'ได้รับ' },
+            { word: 'Recommend', correct: 'แนะนำ' },
+            { word: 'Reduce', correct: 'ลดลง' },
+            { word: 'Relax', correct: 'ผ่อนคลาย' },
+            { word: 'Research', correct: 'การวิจัย' },
+            { word: 'Responsible', correct: 'มีความรับผิดชอบ' },
+            { word: 'Tradition', correct: 'ประเพณี' }
+            
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let selectedQuestions = [];
+
+        function getRandomChoices(correctAnswer) {
+            let choices = [];
+            while (choices.length < 3) {
+                const randomIndex = Math.floor(Math.random() * questions.length);
+                const randomChoice = questions[randomIndex].correct;
+                if (!choices.includes(randomChoice) && randomChoice !== correctAnswer) {
+                    choices.push(randomChoice);
+                }
+            }
+            choices.push(correctAnswer);
+            return choices.sort(() => Math.random() - 0.5);
+        }
+
+        function selectQuestions() {
+            const shuffled = questions.sort(() => 0.5 - Math.random());
+            selectedQuestions = shuffled.slice(0, config.numberOfQuestions);
+        }
+
+        function displayQuestion() {
+            document.getElementById('feedback').textContent = '';
+            const question = selectedQuestions[currentQuestion];
+            document.getElementById('question').textContent = ` ${question.word}`;
+            
+            const choicesContainer = document.getElementById('choices');
+            choicesContainer.innerHTML = '';
+            const choices = getRandomChoices(question.correct);
+            choices.forEach(choice => {
+                const button = document.createElement('button');
+                button.textContent = choice;
+                button.onclick = () => checkAnswer(choice);
+                choicesContainer.appendChild(button);
+            });
+        }
+
+        function checkAnswer(selectedChoice) {
+            const question = selectedQuestions[currentQuestion];
+            const choicesContainer = document.getElementById('choices');
+            if (selectedChoice === question.correct) {
+                document.getElementById('feedback').textContent = 'ถูกต้อง!';
+                score++;
+                setTimeout(() => {
+                    nextQuestion();
+                }, 550);
+            } else {
+                document.getElementById('feedback').textContent = 'ผิด! คำตอบที่ถูกคือ: ' + question.correct;
+                disableChoices();
+                setTimeout(() => {
+                    nextQuestion();
+                }, 2200);
+                document.getElementById('nextButton').style.display = 'inline';
+            }
+        }
+
+        function disableChoices() {
+            const choiceButtons = document.querySelectorAll('#choices button');
+            choiceButtons.forEach(button => {
+                button.classList.add('disabled');
+            });
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion < selectedQuestions.length) {
+                displayQuestion();
+            } else {
+                endGame();
+            }
+            document.getElementById('nextButton').style.display = 'none';
+        }
+
+        function endGame() {
+            document.getElementById('question').textContent = 'เกมจบแล้ว!';
+            document.getElementById('choices').innerHTML = '';
+            document.getElementById('feedback').textContent = '';
+            document.getElementById('score').textContent = `คุณได้คะแนน ${score} จาก ${config.numberOfQuestions} คะแนน`;
+        }
+
+        selectQuestions();
+        displayQuestion();
+        document.getElementById('nextButton').style.display = 'none';
+    </script>
+</body>
+</html>

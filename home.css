@@ -1,0 +1,146 @@
+body {
+    font-family: 'Kanit', sans-serif;
+    margin: 0;
+    background: linear-gradient(to bottom, #03346E, #ffffff);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    box-sizing: border-box; 
+}
+
+header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background-color: #03346E;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 0px; /* เพิ่มระยะห่างจากขอบบน */
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+h1 {
+    font-size: 36px;
+    margin: 0;
+    letter-spacing: 1.5px;
+}
+
+header a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    max-width: 200px; 
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 5px;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    border-radius: 5px;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+    
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .login {
+    background-color: none;
+}
+
+.login {
+    font-size: 18px;
+    padding: 10px 20px;
+    background-color: #03346E;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-align: center;
+}
+
+.login:hover {
+    background-color: #063d80;
+}
+
+main {
+    background-color: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 600px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+h2 {
+    font-size: 32px;
+    margin-bottom: 40px;
+    color: #2980b9;
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: nowrap;
+}
+
+.button-group a {
+    text-decoration: none;
+    text-align: center;
+}
+
+.button-group div {
+    width: 150px;
+    height: 150px;
+    background-color: #2980b9;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bold;
+    border-radius: 10px;
+    transition: transform 0.3s, background-color 0.3s;
+    cursor: pointer;
+}
+
+.button-group div:hover {
+    transform: scale(1.1);
+    background-color: #03346E;
+}
