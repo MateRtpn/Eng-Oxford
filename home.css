@@ -19,7 +19,7 @@ header {
     color: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     position: absolute;
-    top: 0px; /* เพิ่มระยะห่างจากขอบบน */
+    top: 0px;
     left: 50%;
     transform: translateX(-50%);
 }
