@@ -1,6 +1,6 @@
 body {
-    font-family: 'Kanit', sans-serif; /* เปลี่ยนฟอนต์ให้ตรงกัน */
-    background: linear-gradient(to right, #03346E, #6EACDA, #bde2ff); /* ใช้พื้นหลังแบบเดียวกัน */
+    font-family: 'Kanit', sans-serif;
+    background: linear-gradient(to right, #03346E, #6EACDA, #bde2ff);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -14,13 +14,13 @@ main {
     border-radius: 12px;
     box-shadow: 0 8px 16px #00000033;
     text-align: center;
-    width: 400px; /* ปรับขนาดให้ใหญ่ขึ้นเล็กน้อย */
+    width: 400px;
 }
 
 h1 {
     margin-bottom: 20px;
-    color: #03346E; /* ใช้สีเดียวกับธีม */
-    font-size: 32px; /* ขนาดตัวอักษรใหญ่ขึ้นให้เข้ากับธีม */
+    color: #03346E;
+    font-size: 32px;
 }
 
 form {
@@ -44,7 +44,7 @@ input {
 
 button {
     padding: 12px;
-    background-color: #03346E; /* สีปุ่มเหมือนกัน */
+    background-color: #03346E;
     color: white;
     border: none;
     cursor: pointer;
