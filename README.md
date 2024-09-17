@@ -19,4 +19,8 @@
 
 ## วิธีเล่น
 1. ```sh
-   https://eng-oxford.onrender.com/
+   https://eng-oxford.onrender.com
+
+## วิธีเล่น
+2. ```sh
+   https://eng-oxford.vercel.app
