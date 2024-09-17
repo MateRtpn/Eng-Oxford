@@ -17,10 +17,10 @@
 ### ไฟล์ JavaScript
 - `auth.js`: สคริปต์สำหรับการจัดการการเข้าสู่ระบบและออกจากระบบ
 
-## วิธีเล่น
+## วิธีเล่น1
 1. ```sh
    https://eng-oxford.onrender.com
 
-## วิธีเล่น
+## วิธีเล่น2
 2. ```sh
    https://eng-oxford.vercel.app
